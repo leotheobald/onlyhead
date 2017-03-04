@@ -20,6 +20,7 @@ head.ready(document, function () {
 
   if (head.browser.ie && head.browser.version < 9) {
     //head.js(["/css/html5.min.css", "/js/ie.js"]);
+    console.log("IE version: ", head.browser.version);
   };
 
   if (head.browser.ie && head.browser.version > 9) {
