@@ -7,12 +7,13 @@ html(lang="en")
 
         meta(name="viewport" content="width=device-width, initial-scale=1")
 
-        script(src="js/head.js")
+        //- script(src="scripts/head.js")
 
-        //- script(src=locals['dist/main.js'].substr(5))
+        script(src=locals['dist/main.js'].substr(5))
 
         if compileDebug
-            script(head.js("//localhost:9091/livereload.js"))
+            script(src="//localhost:9091/livereload.js")
+            //- script(src=locals['dist/main.js'].substr(5))
 
         //- <script>
         //-   head.js(
@@ -30,7 +31,7 @@ html(lang="en")
         //-       console.info("ui loaded");
         //-       head.load("css/style.css", "js/script.js");
         //-   });
-        //- </script>
+        //-</script>
 
         link(rel="stylesheet", href=locals['dist/main.css'].substr(5))
 
