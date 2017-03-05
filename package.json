@@ -31,9 +31,10 @@
   "scripts": {
     "clean": "rimraf dist/*",
     "prebuild": "npm run clean -s",
-    "build": "npm run build:scripts -s && npm run build:styles -s && npm run build:markup -s",
+    "build": "npm run build:scripts -s && npm run build:styles -s && npm run build:markup -s && npm run build:head -s",
+    "build:head": "browserify assets/scripts/head.js > dist/head.js",
     "build:scripts": "browserify -d assets/scripts/main.js -p [minifyify --compressPath . --map main.js.map --output dist/main.js.map] | hashmark -n dist/main.js -s -l 8 -m assets.json \"dist/{name}{hash}{ext}\"",
-    "build:styles": "lessc assets/styles/main.less > dist/main.css --source-map=dist/main.css.map && hashmark -s -l 8 -m assets.json dist/main.css \"dist/{name}{hash}{ext}\"",
+    "build:styles": "lessc assets/styles/main.less dist/main.css --source-map=dist/main.css.map && hashmark -s -l 8 -m assets.json dist/main.css \"dist/{name}{hash}{ext}\"",
     "build:markup": "pug -P assets/markup/index.pug --obj assets.json -o dist",
     "test": "karma start --singleRun",
     "watch": "parallelshell \"npm run watch:test -s\" \"npm run watch:build -s\"",
