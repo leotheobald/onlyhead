@@ -16,35 +16,30 @@ html(lang="en")
 
         script(type="text/javascript").
             head.load([{ jquery: "https://code.jquery.com/jquery-3.1.1.min.js" }, { ui: "http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" }], function() {
-                head.ready("jquery", function () {
-                    jQuery.noConflict();
+                head.ready(["jquery", "ui"], function () {
+
+                    "use strict";
+
                     console.log("head now loaded!");
 
-                    jQuery(function($){
-                        if (window.console && head.browser.chrome) {
-                            console.info("jquery loaded");
-                            console.log("Chrome version ", head.browser.version);
-                            $("#container").find("h2").css("color", "red");
-                        };
-                        if (head.browser.ff) {
-                            console.log("Firefox version ", head.browser.version);
-                        };
-                        if (head.browser.ie && head.browser.version < 9) {
-                            console.log("IE version: ", head.browser.version);
-                        };
-                        if (head.browser.ie && head.browser.version > 9) {
-                            console.log("IE version: ", head.browser.version);
-                        };
-                    });
+                    if (window.console && head.browser.chrome) {
+                        console.info("jquery loaded");
+                        console.log("Chrome version ", head.browser.version);
+                        $("#container").find("h2").css("color", "red");
+                        console.info("ui loaded");
+                        $("h1").effect("pulsate", { times:3 }, 2000);
+                    };
+                    if (head.browser.ff) {
+                        console.log("Firefox version ", head.browser.version);
+                        $("#container").find("h2").css("color", "blue");
+                    };
+                    if (head.browser.ie && head.browser.version < 9) {
+                        console.log("IE version: ", head.browser.version);
+                    };
+                    if (head.browser.ie && head.browser.version > 9) {
+                        console.log("IE version: ", head.browser.version);
+                    };
 
-                });
-
-                head.ready("ui", function () {
-                    jQuery(function($){
-                        if (window.console && head.browser.chrome)
-                            console.info("ui loaded");
-                            $("h1").effect("pulsate", { times:3 }, 2000);
-                        });
                 });
             });
 
