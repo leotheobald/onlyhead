@@ -17,8 +17,6 @@ html(lang="en")
         script(type="text/javascript").
             head.load([{ jquery: "https://code.jquery.com/jquery-3.1.1.min.js" }, { ui: "http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" }])
 
-        link(rel="stylesheet", href=locals['dist/main.css'].substr(5))
-
     body
         h1 npm scripts demo
         #container
@@ -27,11 +25,32 @@ html(lang="en")
                 compilers, as well as test tools and watchers, without using
                 Grunt, Gulp, Brocolli, Fez, Jake, etc.
 
+        link(rel="stylesheet", href=locals['dist/main.css'].substr(5))
+        
         script(type="text/javascript").
             head.ready(["jquery", "ui"], function () {
                 "use strict";
+
                 console.log("head now loaded!");
-                console.info("jquery loaded", head.screen.height + '" "' + head.screen.innerWidth);
+                console.info("jquery loaded", head.screen.height + ' ' + head.screen.innerWidth);
+
+                $.ajax({
+                    url: "main.css",
+                    dataType: "text",
+                    success: function(cssText) {
+                        // cssText will be a string containing the text of the file
+                        $.each(document.styleSheets, function(sheetIndex, sheet) {
+                            console.log("Looking at styleSheet[" + sheetIndex + "]:");
+                            $.each(sheet.cssRules || sheet.rules, function(ruleIndex, rule) {
+                                console.log("rule[" + ruleIndex + "]: " + rule.cssText);
+                            });
+                        });
+
+                        // cssText now should contain your CSS file content.
+                        $('<style />').text(cssText).appendTo($('head'));
+                    }
+                });
+
                 if (window.console && head.browser.chrome) {
                     console.log("Chrome version ", head.browser.version);
                     $("#container").find("h2").css("color", "red");
@@ -47,6 +66,7 @@ html(lang="en")
                 };
                 if (head.browser.ie && head.browser.version > 9) {
                     console.log("IE version: ", head.browser.version);
+                    $("#container").find("h2").css("color", "green");
                 };
 
             });
