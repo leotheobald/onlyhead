@@ -1,0 +1,90 @@
+/* base.less */
+// js
+// no-mobile
+// desktop
+// no-ie
+// chrome
+// chrome56
+// root-section
+// gradient
+// rgba
+// opacity
+// textshadow
+// multiplebgs
+// boxshadow
+// borderimage
+// borderradius
+// cssreflections
+// csstransforms
+// csstransitions
+// no-touch
+// no-retina
+// fontface
+// domloaded
+// w-1920
+// lt-240
+// lt-320
+// lt-480
+// lt-640
+// lt-768
+// lt-800
+// lt-1024
+// lt-1280
+// lt-1440
+// lt-1680
+// gt-240
+// gt-320
+// gt-480
+// gt-640
+// gt-768
+// gt-800
+// gt-1024
+// gt-1280
+// gt-1440
+// gt-1680
+// no-portrait
+// landscape {
+//  position: relative;
+//  min-height: 1px;
+//  padding-right: 15px;
+//  padding-left: 15px;
+// }
+
+// Variables
+// ------------------------
+@total-width: 100%;
+
+// Styles
+// ------------------------
+.col1 {
+	#grid > .setGridWidths(6, 8, 3, 6);
+	background-color: #630537;
+}
+
+.col2 {
+	#grid > .setGridWidths(6, 2, 3, 6);
+	background-color: #F0F9E3;
+}
+
+.col3 {
+	#grid > .setGridWidths(12, 2, 6, 12);
+	background-color: #CAD1C1;
+}
+
+.col1,
+.col2,
+.col3 {
+	height: 300px;
+  position: relative;
+  min-height: 1px;
+	-webkit-transition: all 1s ease-in .2s;
+    -moz-transition: 	all 1s ease-in .2s;
+    -ms-transition: 	all 1s ease-in .2s;
+    -o-transition: 		all 1s ease-in .2s;
+    transition: 		all 1s ease-in .2s;
+}
+
+.content {
+  clear: both;
+  overflow: hidden;
+}

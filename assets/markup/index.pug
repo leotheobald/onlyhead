@@ -18,15 +18,58 @@ html(lang="en")
             head.load([{ jquery: "https://code.jquery.com/jquery-3.1.1.min.js" }, { ui: "http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" }])
 
     body
-        h1 npm scripts demo
-        #container
-            p.
-                All of this content was created using various preprocessors and
-                compilers, as well as test tools and watchers, without using
-                Grunt, Gulp, Brocolli, Fez, Jake, etc.
+        div.wrapper
+
+            header
+                div#logo.
+                    Rocking Stone
+                nav.navigation
+                    ul
+                        li
+                            <a href="#chapter-one">Chapter One</a>
+                        li
+                            <a href="#chapter-two">Chapter Two</a>
+                        li
+                            <a href="#chapter-three">Chapter Three</a>
+
+            main(role="main")#container
+                h1 npm scripts demo
+                p.
+                    All of this content was created using various preprocessors and
+                    compilers, as well as test tools and watchers, without using Grunt,
+                    Gulp, Brocolli, Fez, Jake, etc.
+
+                article
+                    header
+                        h2 Blog Post Title
+                        p.
+                            Posted 13th February 2014
+
+                    div.content
+                        .col1
+                            p.
+                                some copy for col 1 here...
+
+                        .col2
+                            p.
+                                some copy for col 2 here...
+
+                        .col3
+                            p.
+                                some copy for col 3 here...
+
+                    aside.additional
+                        h3 Google (GOOG)
+                        p.
+                            Google was founded in 1998 by Larry Page and Sergey Brin. The company...
+
+
+            footer.footerOuter
+                div.footerInner.
+                    copyright 2017 leo theo
 
         link(rel="stylesheet", href=locals['dist/main.css'].substr(5))
-        
+
         script(type="text/javascript").
             head.ready(["jquery", "ui"], function () {
                 "use strict";
