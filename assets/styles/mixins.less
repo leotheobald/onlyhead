@@ -1,11 +1,29 @@
 
 /* Mixins */
 
+// @rules Used for targeting specific elements.
+// -------------------------------------------
 .responsive(@maxWidth; @rules) {
     @media only screen and (max-width: @maxWidth) {
         @rules();
     }
 }
+
+// .responsive(int+px, {styles changes}); Usage:
+// .classname {
+//   width: 100%;
+//   .responsive(450px, {
+//      float: left;
+//      margin-top: 10px;
+//   });
+// }
+// Ouputs css:
+// @media only screen and (450px) {
+//   .classname {
+//     float: left;
+//     margin-top: 10px;
+//   }
+// }
 
 // Semantic gs helper mixins.
 // --------------------------
@@ -92,3 +110,9 @@
         @gridsystem-width: (@column-width*@columns) + (@gutter-width*@columns) * 1px;
     }
 }
+
+// usage
+//.className {
+//	#grid > .setGridWidths(12, 2, 6, 12);
+//	background-color: #CAD1C1;
+//}
