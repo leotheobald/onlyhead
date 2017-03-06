@@ -1,4 +1,26 @@
-/* theme.less */
+// Theme
+// -----
+body {
+  background: #c3bdb3;
+  color: #334;
+  font-family: sans-serif;
+}
+
+// Headings
+// --------
+h1 {
+  color: orange;
+  text-align: center;
+  font-size: 10vh;
+
+  .lt-800 & {
+    /* code specific to VIEWPORT < 800 */
+    color: red;
+  }
+}
+
+// Classes
+// -------
 .fancy-overlay {
-    background-color: fade(@alizarin-crimson, 40%);
+  background-color: fade(@alizarin-crimson, 40%);
 }
