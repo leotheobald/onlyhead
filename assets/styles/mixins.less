@@ -1,5 +1,6 @@
 
-/* Mixins */
+// Mixins.
+// -------
 
 // @rules Used for targeting specific elements.
 // -------------------------------------------
@@ -9,20 +10,14 @@
     }
 }
 
-// .responsive(int+px, {styles changes}); Usage:
-// .classname {
+// Usage:
+// ------
+// .className {
 //   width: 100%;
 //   .responsive(450px, {
 //      float: left;
 //      margin-top: 10px;
 //   });
-// }
-// Ouputs css:
-// @media only screen and (450px) {
-//   .classname {
-//     float: left;
-//     margin-top: 10px;
-//   }
 // }
 
 // Semantic gs helper mixins.
@@ -49,8 +44,8 @@
     .setGridWidths(@largeColUnits, @desktopColUnits, @tabletColUnits, @mobileColUnits) {
         #grid > .extraLargeGrid(@largeColUnits);
         #grid > .desktopGrid(@desktopColUnits);
-        #grid >.tabletGrid(@tabletColUnits);
-        #grid >.mobileGrid(@mobileColUnits);
+        #grid > .tabletGrid(@tabletColUnits);
+        #grid > .mobileGrid(@mobileColUnits);
     }
     // Extra large grid mixin.
     // Predefines column width, gutter width and total columns to 73, 20, 12
@@ -111,8 +106,9 @@
     }
 }
 
-// usage
-//.className {
-//	#grid > .setGridWidths(12, 2, 6, 12);
-//	background-color: #CAD1C1;
-//}
+// Usage: Integers represent column count. Choose from 1 - 12.
+// -----------------------------------------------------------
+// .className {
+//	 #grid > .setGridWidths(12(extralarge), 2(desktop), 6(tablet), 12(mobile));
+//	 background-color: #CAD1C1;
+// }

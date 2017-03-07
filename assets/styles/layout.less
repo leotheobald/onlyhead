@@ -1,3 +1,7 @@
+// Variables #grid > .setGridWidths().
+// ---------------------------------
+@total-width: 100%;
+
 // Layout styles
 .col1 {
 	#grid > .setGridWidths(6, 8, 3, 6);
@@ -12,4 +16,22 @@
 .col3 {
 	#grid > .setGridWidths(12, 2, 6, 12);
 	background-color: #CAD1C1;
+}
+
+.col1,
+.col2,
+.col3 {
+	height: 300px;
+  position: relative;
+  min-height: 1px;
+	-webkit-transition: all 1s ease-in .2s;
+    -moz-transition: 	all 1s ease-in .2s;
+     -ms-transition: 	all 1s ease-in .2s;
+    	-o-transition: 	all 1s ease-in .2s;
+         transition: 	all 1s ease-in .2s;
+}
+
+.content {
+  clear: both;
+  overflow: hidden;
 }

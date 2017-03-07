@@ -1,4 +1,24 @@
-/* base.less */
+// Base styles.
+// ------------
+body {
+  margin: 0;
+  padding: 0;
+  background: #c3bdb3;
+  color: #334;
+  font-family: sans-serif;
+}
+
+a {
+  color: #039;
+}
+
+a:hover {
+  color: #03F;
+}
+
+// Columns
+// -------
+
 // js
 // no-mobile
 // desktop
@@ -49,45 +69,3 @@
 //  padding-right: 15px;
 //  padding-left: 15px;
 // }
-
-// Variables
-// ------------------------
-@total-width: 100%;
-
-// Styles
-// ------------------------
-body {
-    margin: 0;
-    padding: 0;
-    background: #c3bdb3;
-    color: #334;
-    font-family: sans-serif;
-}
-
-a {
-    color: #039;
-}
-
-a:hover {
-    color: #03F;
-}
-
-// Columns
-// -------
-.col1,
-.col2,
-.col3 {
-	height: 300px;
-  position: relative;
-  min-height: 1px;
-	-webkit-transition: all 1s ease-in .2s;
-    -moz-transition: 	all 1s ease-in .2s;
-     -ms-transition: 	all 1s ease-in .2s;
-    	-o-transition: 	all 1s ease-in .2s;
-         transition: 	all 1s ease-in .2s;
-}
-
-.content {
-  clear: both;
-  overflow: hidden;
-}
