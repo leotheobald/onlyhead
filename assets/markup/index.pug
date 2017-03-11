@@ -7,51 +7,97 @@ html(lang="en")
 
         meta(name="viewport" content="width=device-width, initial-scale=1")
 
-        //- script(src="scripts/head.js")
+        script(src="head.js")
 
         script(src=locals['dist/main.js'].substr(5))
 
-        if compileDebug
-            script(src="//localhost:9091/livereload.js")
-            //- script(src=locals['dist/main.js'].substr(5))
+        script(type="text/javascript").
+            head.load([{ jquery: "https://code.jquery.com/jquery-3.1.1.min.js" }, { ui: "http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" }])
+            head.ready(["jquery", "ui"], function () {
+                "use strict";
+                console.log("head now loaded!");
+                console.info("jquery loaded", head.screen.height + ' ' + head.screen.innerWidth);
+                $.ajax({
+                    url: "main.css",
+                    dataType: "text",
+                    success: function(cssText) {
+                        // cssText now should contain your CSS file content.
+                        $('<style />').text(cssText).appendTo($('head'));
+                    }
+                });
+            })
 
-        //- <script>
-        //-   head.js(
-        //-     { jquery: "https://code.jquery.com/jquery-3.1.1.min.js" },
-        //-     { ui: "http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" }
-        //-   );
-        //-
-        //-   head.ready("jquery", function () {
-        //-     if (window.console)
-        //-       console.info("jquery loaded");
-        //-   });
-        //-
-        //-   head.ready("ui", function () {
-        //-     if (window.console)
-        //-       console.info("ui loaded");
-        //-       head.load("css/style.css", "js/script.js");
-        //-   });
-        //-</script>
+    body
+        div.wrapper
+            header
+                div#logo.
+                    Rocking Stone
+                nav.navigation
+                    ul
+                        li
+                            a(href="#chapter-one") Chapter One
+                        li
+                            a(href="#chapter-two") Chapter Two
+                        li
+                            a(href="#chapter-three") Chapter Three
+
+            main(role="main")#container
+                h1 npm scripts demo
+                p.
+                    All of this content was created using various preprocessors and
+                    compilers, as well as test tools and watchers, without using Grunt,
+                    Gulp, Brocolli, Fez, Jake, etc.
+
+                article
+                    header
+                        h2 Blog Post Title
+                        p.
+                            Posted 13th February 2014
+
+                    section.content
+                        .col1
+                            p.
+                                some copy for col 1 here...
+
+                        .col2
+                            p.
+                                some copy for col 2 here...
+
+                        .col3
+                            p.
+                                some copy for col 3 here...
+
+                    aside.additional
+                        h3 Google (GOOG)
+                        p.
+                            Google was founded in 1998 by Larry Page and Sergey Brin. The company...
+
+
+            footer.footerOuter
+                div.footerInner.
+                    copyright 2017 leo theo
 
         link(rel="stylesheet", href=locals['dist/main.css'].substr(5))
 
-    body
-        h1 npm scripts demo
-        #container
-            p.
-                All of this content was created using various preprocessors and
-                compilers, as well as test tools and watchers, without using
-                Grunt, Gulp, Brocolli, Fez, Jake, etc.
+        script(type="text/javascript").
+            head.ready(["jquery", "ui"], function () {
+                "use strict";
 
-        //- <script>
-        //-     head.ready("jquery", function () {
-        //-     if (window.console)
-        //-       console.info("jquery loaded");
-        //-     });
-        //-
-        //-     head.ready("ui", function () {
-        //-     if (window.console)
-        //-       console.info("ui loaded");
-        //-       head.load("dist/main.css", "dist/script.js");
-        //-     });
-        //- </script>
+                if (window.console && head.browser.chrome) {
+                    console.log("Chrome version ", head.browser.version);
+                    $("#container").find("h2").css("color", "red");
+                    console.info("ui loaded");
+                    $("h1").effect("pulsate", { times:3 }, 2000);
+                };
+                if (head.browser.ff) {
+                    console.log("Firefox version ", head.browser.version);
+                    $("#container").find("h2").css("color", "blue");
+                };
+                if (head.browser.ie && head.browser.version < 9) {
+                    console.log("IE version: ", head.browser.version);
+                };
+                if (head.browser.ie && head.browser.version > 9) {
+                    console.log("IE version: ", head.browser.version);
+                    $("#container").find("h2").css("color", "green");
+                };
+            });
