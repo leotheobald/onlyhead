@@ -1,6 +1,12 @@
 // Variables #grid > .setGridWidths().
 // ---------------------------------
-@total-width: 100%;
+
+
+@column-width: 60;
+@gutter-width: 20;
+@columns: 12;
+
+//@total-width: 100%;
 
 // Layout styles
 .col1 {
@@ -11,6 +17,16 @@
 .col2 {
 	#grid > .setGridWidths(6, 2, 3, 6);
 	background-color: #F0F9E3;
+
+	p {
+		border: 1px solid red;
+		height: 40px;
+
+		.responsive(600px, {
+			border: 1px solid green;
+			height: 60px;
+		});
+	}
 }
 
 .col3 {
@@ -31,7 +47,16 @@
          transition: 	all 1s ease-in .2s;
 }
 
+p {
+	-webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
+    transition: width 2s, height 2s, transform 2s;
+}
+
 .content {
+	.responsive(1920px, {
+		margin: 0 auto;
+		width: 90%;
+	});
   clear: both;
   overflow: hidden;
 }
