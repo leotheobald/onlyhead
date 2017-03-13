@@ -1,7 +1,7 @@
 doctype html
 html(lang="en")
     head
-        title NPM Scripts Demo
+        title HeadJS loads css and js
 
         meta(charset="utf-8")
 
@@ -9,11 +9,10 @@ html(lang="en")
 
         script(src="head.js")
 
-        script(src=locals['dist/main.js'].substr(5))
-
         script(type="text/javascript").
             head.load([{ jquery: "//code.jquery.com/jquery-3.1.1.min.js" }, { ui: "//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" }])
             head(function () {
+                "use strict";
                 document.createStyleSheet = (function() {
                     function createStyleSheet(element) {
                         var element = document.createElement('style');
@@ -24,7 +23,6 @@ html(lang="en")
                                 var style = document.getElementsByTagName('head')[0].appendChild(element);
                                 document.styleSheets[document.styleSheets.length - 1];
                                 style.innerHTML = this.responseText;
-                                //- console.log(text);
                             }        
                         };
                         xhttp.open("GET", "main.css", true);
@@ -50,7 +48,7 @@ html(lang="en")
                             a(href="#chapter-three") Chapter Three
 
             main(role="main")#container
-                h1(class="articleTitle") npm scripts demo
+                h1(class="articleTitle") HeadJS loads css and js
                 p.
                     All of this content was created using various preprocessors and
                     compilers, as well as test tools and watchers, without using Grunt,
@@ -126,13 +124,12 @@ html(lang="en")
                 div.footerInner.
                     copyright 2017 leo theo
 
-        link(rel="stylesheet", href=locals['dist/main.css'].substr(5))
-
+        script(src=locals['dist/main.js'].substr(5))
         script(type="text/javascript").
             head.ready(["jquery", "ui"], function () {
                 "use strict";
                 console.log("head now loaded!");
-                console.info("jquery loaded", head.screen.height + ' ' + head.screen.innerWidth);
+                console.info("jquery loaded");
                 if (window.console && head.browser.chrome) {
                     console.log("Chrome version ", head.browser.version);
                     $("#container").find("h2").css("color", "red");
