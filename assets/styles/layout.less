@@ -7,6 +7,12 @@
 @total-width: 100%;
 
 // Layout styles
+header, main, footer, aside {
+	padding: 0 15px;
+}
+main article {
+	margin: 0 -15px;
+}
 .col {
 	min-height: 1px;
 	position: relative;
@@ -20,8 +26,8 @@
 	#grid > .setGridWidths(6, 2, 3, 6);
 	background-color: #F0F9E3;
 
-	p {
-		border: 1px solid red;
+	p.leader {
+		color: red;
 
 		.responsive(600px, {
 			border: 1px solid green;

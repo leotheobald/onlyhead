@@ -14,10 +14,11 @@ html(lang="en")
             head(function () {
                 "use strict";
                 document.createStyleSheet = (function() {
-                    function createStyleSheet(element) {
+                    function makeStyleSheet(element) {
                         var element = document.createElement('style');
                         element.type = 'text/css';
                         var xhttp = new XMLHttpRequest();
+                        xhttp.open("GET", "main.css", true);
                         xhttp.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
                                 var style = document.getElementsByTagName('head')[0].appendChild(element);
@@ -25,10 +26,9 @@ html(lang="en")
                                 style.innerHTML = this.responseText;
                             }        
                         };
-                        xhttp.open("GET", "main.css", true);
                         xhttp.send();
                     }
-                    return createStyleSheet;
+                    return makeStyleSheet;
                 })();
                 document.createStyleSheet();
             })

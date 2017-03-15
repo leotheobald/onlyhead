@@ -1,9 +1,9 @@
 {
   "name": "onlyhead",
   "version": "1.0.0",
-  "description": "An example of how to use npm scripts over a build tool like Grunt or Gulp",
+  "description": "An example of how to use headjs to load scripts and css",
   "main": "index.js",
-  "author": "Keith Cirkel <npm@keithcirkel.co.uk> (http://keithcirkel.co.uk/)",
+  "author": "Leo (Jonathan) Theobald <leotheo@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "browserify": "^13.1.0",
