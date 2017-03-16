@@ -11,31 +11,50 @@ html(lang="en")
 
         script(type="text/javascript").
             head.load([{ jquery: "//code.jquery.com/jquery-3.1.1.min.js" }, { ui: "//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" }])
-            head(function () {
-                "use strict";
-                document.createStyleSheet = (function() {
-                    function makeStyleSheet(element) {
-                        var element = document.createElement('style');
-                        element.type = 'text/css';
-                        var xhttp = new XMLHttpRequest();
-                        xhttp.open("GET", "main.css", true);
-                        xhttp.onreadystatechange = function() {
-                            if (this.readyState == 4 && this.status == 200) {
-                                var style = document.getElementsByTagName('head')[0].appendChild(element);
-                                document.styleSheets[document.styleSheets.length - 1];
-                                style.innerHTML = this.responseText;
-                            }        
-                        };
-                        xhttp.send();
-                    }
-                    return makeStyleSheet;
-                })();
-                document.createStyleSheet();
-            })
 
-    body(class="landing")
+            "use strict";
+            document.createStyleSheet = (function() {
+                function makeStyleSheet(element) {
+                    var element = document.createElement('style');
+                    element.type = 'text/css';
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("GET", "main.css", true);
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var style = document.getElementsByTagName('head')[0].appendChild(element);
+                            document.styleSheets[document.styleSheets.length - 1];
+                            style.innerHTML = this.responseText;
+                        }        
+                    };
+                    xhttp.send();
+                }
+                return makeStyleSheet;
+            })();
+            document.createStyleSheet();
+            
+            function onReady(callback) {
+                var intervalID = window.setInterval(checkReady, 1500);
+                function checkReady() {
+                    if (document.getElementsByTagName('body')[0] !== undefined) {
+                        window.clearInterval(intervalID);
+                        callback.call(this);
+                    }
+                }
+            }
+
+            function show(id, value) {
+                document.getElementById(id).style.display = value ? 'block' : 'none';
+            }
+
+            onReady(function () {
+                show('page', true);
+                show('loading', false);
+            });
+
+
+    body(id="page" class="landing")
         div.wrapper
-            header
+            header.top
                 div#logo.
                     Rocking Stone
                 nav.navigation
@@ -48,77 +67,61 @@ html(lang="en")
                             a(href="#chapter-three") Chapter Three
 
             main(role="main")#container
-                h1(class="articleTitle") HeadJS loads css and js
-                p.
-                    All of this content was created using various preprocessors and
-                    compilers, as well as test tools and watchers, without using Grunt,
-                    Gulp, Brocolli, Fez, Jake, etc.
-
-                article
-                    header
-                        h2 Blog Post Title
-                        p.
-                            Posted 13th February 2014
-
-                    section.content
-                        .col1
-                            p.
-                                some copy for col 1 here...
-
-                        .col2
-                            p.
-                                some copy for col 2 here...
-                                
-                            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                            <symbol id="beaker" viewBox="214.7 0 182.6 792">
-                                <circle cx="344.8" cy="20.2" r="20.2"/>
-                                <circle cx="344.8" cy="92.9" r="20.2"/>
-                                <circle cx="320.5" cy="169.7" r="24.2"/>
-                                <circle cx="243" cy="141.4" r="24.2"/>
-                                <circle cx="284.2" cy="56.6" r="36.4"/>
-                                <path d="M397.3 768.5l-11.3-343.5v-178.5l9.7-20.2h-29.9l-4 13.7 2.4 189.9 9.7 316.8c1.6 14.5-19.4 12.9-34.8 12.9h-33.9s-38.8.8-46.1 0c-14.5-.8-18.6 1.6-17-29.1 1.6-25.2.8-95.5 5.7-301.5l-2.4-189.9-3.2-12.9h-27.5l9.7 20.2v178.6s-3.2 323.3-3.2 343.5c0 26.7 22.6 23.4 22.6 23.4h128.5c7.2 0 25 0 25-23.4zM259.9 473.5h93.8l-1.6-79.9h-92.2zM356.1 611.7l-2.4-132.6v5.7h-93.8l-.8 126.9zM352.1 382.3l-1.7-99.4h-89.7l-.8 99.4zM259.1 623l-.8 123.6h101l-2.4-123.6z"/>
-                            </symbol>
-                            <symbol id="fish" viewBox="0 26 100 48">
-                                <path d="M98.5,47.5C96.5,45.5,81,35,62,35c-2.1,0-4.2,0.1-6.2,0.3L39,26c0,4.5,1.3,9,2.4,12.1C31.7,40.7,23.3,44,16,44L0,34c0,8,4,16,4,16s-4,8-4,16l16-10c7.3,0,15.7,3.3,25.4,5.9C40.3,65,39,69.5,39,74l16.8-9.3c2,0.2,4.1,0.3,6.2,0.3c19,0,34.5-10.5,36.5-12.5S100.5,49.5,98.5,47.5z M85.5,50c-1.4,0-2.5-1.1-2.5-2.5s1.1-2.5,2.5-2.5s2.5,1.1,2.5,2.5C88,48.9,86.9,50,85.5,50z"/>  
-                            </symbol>
+                //-h1(class="articleTitle") HeadJS loads css and js
+                
+                section.content
+                    <figure class="intro">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/46992/diver2.jpg" alt="" />
+                        <figcaption class="caption">
+                            <h1>HeadJS loads css and js</h1>
+                        </figcaption>
+                        <span class="overlay">
+                            <svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 250" enable-background="new 0 0 500 250" xml:space="preserve" PreserveAspectRatio="none">
+                                <path fill="#FFFFFF" d="M250,246.5c-97.85,0-186.344-40.044-250-104.633V250h500V141.867C436.344,206.456,347.85,246.5,250,246.5z"/>
                             </svg>
-                            <svg class="icon"><use xlink:href="#beaker" /></svg>
-                            <svg class="icon"><use xlink:href="#fish" /></svg>
+                        </span>
+                    </figure>
+                    <article class="copy">
+                        <p class="teaser">Scroll down to see the effect. Actually I just wanted to code a layout idea with a curved cut header image, but ended up with this one. Even though it looks fine and performance quite good, I dislike the idea of having an inline svg in the markup, that only has an asthetic/design function. Any ideas on how to improve this pen are welcome.</p>
+                        <p>If you browsing with Chrome, make sure you have the "experimental Web Platform features" enabled (go to chrome://flags/), to see image's mix-blend-mode effect.</p>
+                    </article>
 
-                        .col3
+                    article
+                        header
+                            h2 Blog Post Title
                             p.
-                                some copy for col 3 here...
+                                Posted 13th February 2014
+
+                        section.content
+                            .col1
+                                h2 Load A Photo
+                                p.
+                                    some copy for col 1 here...
+                                    
+                                input(id="the-file-input" type="file")
+                                    
+                                #preview
+                                    <!-- #preview image will be inserted here -->
                                 
-                            <svg class="chart" width="420" height="150" aria-labelledby="title desc" role="img">
-                                <title id="title">A bar chart showing information</title>
-                                <desc id="desc">4 apples; 8 bananas; 15 kiwis; 16 oranges; 23 lemons</desc>
-                                <g class="bar">
-                                    <rect width="40" height="19"></rect>
-                                    <text x="45" y="9.5" dy=".35em">4 apples</text>
-                                </g>
-                                <g class="bar">
-                                    <rect width="80" height="19" y="20"></rect>
-                                    <text x="85" y="28" dy=".35em">8 bananas</text>
-                                </g>
-                                <g class="bar">
-                                    <rect width="150" height="19" y="40"></rect>
-                                    <text x="150" y="48" dy=".35em">15 kiwis</text>
-                                </g>
-                                <g class="bar">
-                                    <rect width="160" height="19" y="60"></rect>
-                                    <text x="161" y="68" dy=".35em">16 oranges</text>
-                                </g>
-                                <g class="bar">
-                                    <rect width="230" height="19" y="80"></rect>
-                                    <text x="235" y="88" dy=".35em">23 lemons</text>
-                                </g>
-                            </svg>
+                                #data
+                                    h2#name
+                                    p(id="size")
+                                    p(id="type")
 
-                    aside.additional
-                        h3 Google (GOOG)
-                        p.
-                            Google was founded in 1998 by Larry Page and Sergey Brin. The company...
+                            .col2
+                                p.
+                                    some copy for col 2 here...
 
+                            .col3
+                                p.
+                                    some copy for col 3 here...
+
+                        aside.additional
+                            h3 Google (GOOG)
+                            p.
+                                Google was founded in 1998 by Larry Page and Sergey Brin. The company...
+                
+                #loading
 
             footer.footerOuter
                 div.footerInner.
@@ -147,4 +150,56 @@ html(lang="en")
                     console.log("IE version: ", head.browser.version);
                     $("#container").find("h2").css("color", "green");
                 };
-            });
+                if(head.draganddrop) {
+                    console.log("we can move stuff!");
+                }
+                
+                // render the image in our view
+                function renderImage(file) {
+                    
+                    // generate a new FileReader object
+                    var reader = new FileReader(),
+                    the_url = reader.readAsDataURL(file);
+                    
+                    // inject an image with the src url
+                    reader.onload = function(event) {
+                        the_url = event.target.result
+                        $('#preview').html("<img src='" + the_url + "' />")
+                        
+                        $('#preview').html("<img src='"+the_url+"' />")
+                        $('#name').html(file.name)
+                        $('#size').html(file.size)
+                        $('#type').html(file.type)
+                    }
+                    
+                    // when the file is read it triggers the onload event above.
+                    the_url;
+                }
+
+                // detect a change in a file input with an id of “the-file-input”
+                $("#the-file-input").change(function() {
+                    
+                    // will log a FileList object, view jpgs or pngs below
+                    console.log(this.files[0])
+                    
+                    // grab the first image in the FileList object and pass it to the function
+                    renderImage(this.files[0])
+                });
+                
+                //- found this function here 
+                //- http://stackoverflow.com/a/26831113
+
+                function inViewport($el) {
+                    var H = $(window).height(),
+                        r = $el[0].getBoundingClientRect(), 
+                        t=r.top, 
+                        b=r.bottom;
+                    return Math.max(0, t>0? H-t : (b<H?b:H));  
+                }
+
+                $(window).on("scroll resize", function(){
+                    var window_offset = inViewport($('.intro')); 
+                    $(".overlay").height(window_offset);
+                        $(".caption").css("bottom", (window_offset / 4) );
+                    });
+                });
